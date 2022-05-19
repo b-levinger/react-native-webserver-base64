@@ -134,7 +134,11 @@ RCT_EXPORT_METHOD(respond: (NSString *) requestId
                   type: (NSString *) type
                   body: (NSString *) body)
 {
-    NSData* data = [body dataUsingEncoding:NSUTF8StringEncoding];
+    if (body == nil) {
+        body = @"";
+    }
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:body options:0];
+
     GCDWebServerDataResponse* response = [[GCDWebServerDataResponse alloc] initWithData:data contentType:type];
     response.statusCode = code;
     [response setValue:@"*" forAdditionalHeader:(@"Access-Control-Allow-Origin")];
