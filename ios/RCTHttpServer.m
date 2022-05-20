@@ -144,6 +144,7 @@ RCT_EXPORT_METHOD(respond: (NSString *) requestId
     [response setValue:@"*" forAdditionalHeader:(@"Access-Control-Allow-Origin")];
     [response setValue:@"*" forAdditionalHeader:(@"Access-Control-Allow-Headers")];
     [response setValue:@"*" forAdditionalHeader:(@"Access-Control-Allow-`Methods`")];
+    [response setValue:@"public, max-age=31536000" forAdditionalHeader:(@"Cache-Control")];
     response.gzipContentEncodingEnabled = NO;
 
     GCDWebServerCompletionBlock completionBlock = nil;
